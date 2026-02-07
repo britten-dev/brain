@@ -126,7 +126,8 @@ answer: ${c.answer}
         answer,
         confidence: conf,
         debug: {
-          cards: cards.map((c) => ({ id: c.id, title: c.title, similarity: c.similarity })),
+          cards: cards.map((c: any) => ({ id: c.id, title: c.title, similarity: c.similarity })),
+
         },
       };
   return Response.json(body);
