@@ -95,7 +95,7 @@ FORMAT:
 
   const kbContext = cards
     .map(
-      (c, i) => `Card ${i + 1}
+      (c: any, i: number) => `Card ${i + 1}
 id: ${c.id}
 title: ${c.title}
 topics: ${JSON.stringify(c.topics)}
