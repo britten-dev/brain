@@ -30,23 +30,23 @@ function LoginInner() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6">
-      <div className="w-full max-w-sm rounded-2xl border p-6 shadow-sm">
+    <div className="min-h-screen flex items-center justify-center p-12">
+      <div className="w-full max-w-sm bw-box p-8">
         <h1 className="text-xl font-semibold">Britten RAG Test</h1>
-        <p className="text-sm text-gray-600 mt-2">
+        <p className="text-sm text-gray-600 mt-4">
           Enter the shared password to access the test chat.
         </p>
 
-        <form className="mt-4 space-y-3" onSubmit={onSubmit}>
+        <form className="mt-8 space-y-4" onSubmit={onSubmit}>
           <input
-            className="w-full rounded-xl border px-3 py-2"
+            className="w-full bw-input px-3 py-2"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
           {error && <p className="text-sm text-red-600">{error}</p>}
-          <button className="w-full rounded-xl bg-black text-white py-2">
+          <button type="submit" className="w-full bw-btn py-2">
             Continue
           </button>
         </form>

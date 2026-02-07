@@ -71,9 +71,9 @@ export default function ChatPage() {
   const showDebugUI = !publicMode && showDebug;
 
   return (
-    <div className={`min-h-screen grid gap-4 p-6 ${showDebugUI ? "grid-cols-1 lg:grid-cols-3" : "grid-cols-1"}`}>
-      <div className={`rounded-2xl border shadow-sm flex flex-col ${showDebugUI ? "lg:col-span-2" : ""}`}>
-        <div className="p-4 border-b">
+    <div className={`min-h-screen grid gap-8 p-12 ${showDebugUI ? "grid-cols-1 lg:grid-cols-3" : "grid-cols-1"}`}>
+      <div className={`bw-box flex flex-col ${showDebugUI ? "lg:col-span-2" : ""}`}>
+        <div className="p-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <h1 className="text-xl font-semibold">Britten Weddings — Test Chat</h1>
             {!publicMode && (
@@ -82,25 +82,25 @@ export default function ChatPage() {
                   type="checkbox"
                   checked={showDebug}
                   onChange={(e) => toggleShowDebug(e.target.checked)}
-                  className="rounded border-gray-400"
+                  className="bw-input"
                 />
                 Show debug
               </label>
             )}
           </div>
           {showDebugUI && (
-            <div className="flex items-center gap-4 mt-1">
+            <div className="flex items-center gap-6 mt-3">
               <p className="text-sm text-gray-600">
                 Confidence: <span className="font-medium">{confidence}</span>
               </p>
-              <Link href="/admin/new-card" className="text-sm text-gray-600 hover:text-black">
+              <Link href="/admin/new-card" className="text-sm text-gray-600 hover:opacity-80">
                 Add knowledge card
               </Link>
             </div>
           )}
         </div>
 
-        <div className="flex-1 p-4 space-y-3 overflow-auto">
+        <div className="flex-1 px-6 pb-6 space-y-4 overflow-auto">
           {messages.map((m, i) => (
             <div
               key={i}
@@ -108,10 +108,10 @@ export default function ChatPage() {
             >
               <div
                 className={[
-                  "inline-block max-w-[85%] rounded-2xl px-4 py-2",
+                  "inline-block max-w-[85%] px-4 py-2",
                   m.role === "user"
-                    ? "bg-black text-white"
-                    : "bg-gray-100 text-black",
+                    ? "bw-btn"
+                    : "bw-box text-black",
                 ].join(" ")}
               >
                 {m.content}
@@ -121,9 +121,9 @@ export default function ChatPage() {
           {loading && <p className="text-sm text-gray-500">Thinking…</p>}
         </div>
 
-        <div className="p-4 border-t flex gap-2">
+        <div className="p-6 flex gap-3">
           <input
-            className="flex-1 rounded-xl border px-3 py-2"
+            className="flex-1 bw-input px-3 py-2"
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             placeholder="Ask a test question…"
@@ -132,7 +132,7 @@ export default function ChatPage() {
             }}
           />
           <button
-            className="rounded-xl bg-black text-white px-4"
+            className="bw-btn px-4"
             onClick={send}
           >
             Send
@@ -141,20 +141,20 @@ export default function ChatPage() {
       </div>
 
       {showDebugUI && (
-        <div className="rounded-2xl border shadow-sm p-4">
+        <div className="bw-box p-6">
           <h2 className="text-lg font-semibold">Debug: Retrieved Cards</h2>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="text-sm text-gray-600 mt-3">
             Top matches used for grounding.
           </p>
 
-          <div className="mt-4 space-y-3">
+          <div className="mt-6 space-y-4">
             {debug.length === 0 ? (
               <p className="text-sm text-gray-500">No cards yet.</p>
             ) : (
               debug.map((c) => (
-                <div key={c.id} className="rounded-xl border p-3">
+                <div key={c.id} className="bw-box p-4">
                   <div className="text-sm font-medium">{c.title}</div>
-                  <div className="text-xs text-gray-600 mt-1">
+                  <div className="text-xs text-gray-600 mt-2">
                     similarity: {c.similarity.toFixed(3)}
                   </div>
                 </div>
